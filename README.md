@@ -1,79 +1,53 @@
-# 🧾 Proyecto Final Backend 3 – Sistema de Gestión de Productos y Usuarios
+# AdoptMe — Backend III
 
-**Entrega final del curso de Backend en Coderhouse**  
-Desarrollado con Node.js, Express, MongoDB y EJS.
+API y aplicación web para gestionar usuarios, mascotas y adopciones. El proyecto aplica una arquitectura de DAO, repositorios y servicios, e incluye autenticación por sesión, carga de documentos, pruebas de integración y contenedores Docker.
 
-## 📚 Descripción
+## Funcionalidades
 
-Este proyecto es una aplicación web que permite gestionar productos y usuarios, incluyendo funcionalidades como:
+- Gestión de usuarios y mascotas.
+- Registro de adopciones entre usuarios y mascotas.
+- Inicio de sesión y sesiones persistentes.
+- Carga de documentos con Multer.
+- DTOs para normalizar respuestas.
+- Repositorios sobre DAOs de MongoDB.
+- Vistas con Handlebars.
+- Pruebas de sesiones y adopciones.
+- Entorno Docker con `docker-compose`.
 
-- Registro y autenticación de usuarios.
-- CRUD de productos.
-- Gestión de roles (administrador y usuario).
-- Vistas dinámicas con EJS.
-- Persistencia de datos con MongoDB.
+## Stack
 
-## 🛠️ Tecnologías Utilizadas
-
-- Node.js
-- Express.js
+- Node.js y Express
 - MongoDB y Mongoose
-- EJS (Embedded JavaScript templates)
-- JavaScript
-- HTML y CSS
+- Express Session
+- Handlebars
+- bcrypt y JSON Web Tokens
+- Multer
+- Mocha, Chai y Supertest
+- Docker
 
-## 🚀 Instrucciones para Ejecutar el Proyecto
+## Arquitectura
 
-1. **Clonar el repositorio**:
-   ```bash
-   git clone https://github.com/tristanlgb/ProyectoFinalBackend3_Lenzberg.git
-   cd ProyectoFinalBackend3_Lenzberg
-   ```
+El flujo principal separa `routes`, `controllers`, `services`, `repository`, `dao` y modelos de Mongoose. Esta organización desacopla la capa HTTP de la persistencia.
 
-2. **Instalar dependencias**:
-   ```bash
-   npm install
-   ```
+## Configuración
 
-3. **Configurar variables de entorno**:
-   Crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
-   ```
-   PORT=3000
-   MONGODB_URI=tu_uri_de_mongodb
-   SECRET_KEY=tu_clave_secreta
-   ```
+Crear `.env` con:
 
-4. **Iniciar el servidor**:
-   ```bash
-   npm start
-   ```
-
-5. **Acceder a la aplicación**:
-   Abre tu navegador en `http://localhost:3000/`.
-
-## 📁 Estructura del Proyecto
-
-```
-ProyectoFinalBackend3_Lenzberg/
-├── src/
-│   ├── controllers/         # Controladores de la aplicación
-│   ├── models/              # Modelos de Mongoose
-│   ├── routes/              # Rutas de la aplicación
-│   ├── views/               # Plantillas EJS
-│   ├── public/              # Archivos estáticos (CSS, JS, imágenes)
-│   └── app.js               # Configuración principal del servidor
-├── .env                     # Variables de entorno
-├── package.json             # Dependencias y scripts del proyecto
-└── README.md                # Documentación del proyecto
+```env
+PORT=8080
+MONGO_URI=mongodb://localhost:27017/adoptme
+SESSION_SECRET=una_clave_segura
 ```
 
-## 📌 Notas Adicionales
+## Ejecución
 
-- Asegúrate de tener MongoDB en funcionamiento y accesible desde la URI proporcionada en `.env`.
-- Se recomienda utilizar herramientas como Postman para probar las rutas de la API.
+```bash
+npm install
+npm run dev
+```
 
-## 👨‍💻 Autor
+Pruebas: `npm test`. Con Docker: `docker compose up --build`.
 
-**Tristan Lenzberg**  
-Desarrollador Full Stack  
-[GitHub](https://github.com/tristanlgb) | [LinkedIn](https://ar.linkedin.com/in/tristan-lenzberg-9b13422b3)
+Endpoints principales: `/api/users`, `/api/sessions`, `/api/pets` y `/api/adoptions`.
+
+> Proyecto educativo. No incluir secretos reales en `env.txt` ni en archivos versionados.
